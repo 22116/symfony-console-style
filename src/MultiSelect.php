@@ -60,8 +60,8 @@ class MultiSelect
     {
         $this->output = $output;
         $this->stdin = \fopen('php://stdin', 'rb');
-        $this->sttyState = system('stty -g');
-        system('stty cbreak -echo');
+        $this->sttyState = shell_exec('stty -g');
+        shell_exec('stty cbreak -echo');
     }
 
     /**
@@ -166,7 +166,7 @@ class MultiSelect
             \usleep(200000);
         }
 
-        system("stty '$this->sttyState'");
+        shell_exec("stty '$this->sttyState'");
 
         return $selectedOptions;
     }
