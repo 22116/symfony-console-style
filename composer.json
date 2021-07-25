@@ -12,12 +12,10 @@
     ],
     "require": {
         "php": ">=7.2",
-        "symfony/console": "3.4.*|~4.0"
+        "symfony/console": "^v5"
     },
     "require-dev": {
-        "satooshi/php-coveralls": "1.0.*",
-        "symfony/var-dumper": "^4.1",
-        "bluetree-service/clover-reporter": "~0.1",
+        "symfony/var-dumper": "^5.1",
         "phpunit/phpunit": "^8.4"
     },
     "autoload": {

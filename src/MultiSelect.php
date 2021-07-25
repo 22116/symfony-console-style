@@ -51,6 +51,8 @@ class MultiSelect
      */
     protected $stdin;
 
+    protected $sttyState = '';
+
     /**
      * @param $output
      */
@@ -58,6 +60,7 @@ class MultiSelect
     {
         $this->output = $output;
         $this->stdin = \fopen('php://stdin', 'rb');
+        $this->sttyState = system('stty -g');
         system('stty cbreak -echo');
     }
 
@@ -100,7 +103,7 @@ class MultiSelect
      */
     public function renderMultiSelect(array $dataList): array
     {
-        return $this->renderList($dataList, false);
+        return array_keys($this->renderList($dataList, false));
     }
 
     /**
@@ -112,6 +115,7 @@ class MultiSelect
         $selectedOptions = $this->renderList($dataList, true);
 
         $keys = \array_keys($selectedOptions);
+
         return \reset($keys);
     }
 
@@ -139,7 +143,7 @@ class MultiSelect
                 continue;
             }
 
-            if ($char === self::CHARS['enter']) {
+            if ($char === self::CHARS['enter'] && (!$isSingleSelect || $selectedOptions)) {
                 $this->renderSelectionInfo($dataList, $selectedOptions);
 
                 break;
@@ -159,8 +163,10 @@ class MultiSelect
 
             $this->renderListWithSelection($dataList, $cursor, $selectedOptions);
 
-            \usleep(500000);
+            \usleep(200000);
         }
+
+        system("stty '$this->sttyState'");
 
         return $selectedOptions;
     }
