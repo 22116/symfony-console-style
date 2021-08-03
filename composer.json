@@ -1,10 +1,14 @@
 {
-    "name": "bluetree-service/symfony-console-style",
+    "name": "lsbproject/symfony-console-style",
     "description": "Extends symfony console display style",
     "type": "library",
     "license": "MIT",
-    "version": "0.6.0.0",
+    "version": "0.6.0",
     "authors": [
+        {
+            "name": "Victor Fedorenko",
+            "email": "fedorenko22116@gmail.com"
+        },
         {
             "name": "Michał Adamiak",
             "email": "chajr@bluetree.pl"
@@ -13,10 +17,6 @@
     "require": {
         "php": ">=7.2",
         "symfony/console": "^v5"
-    },
-    "require-dev": {
-        "symfony/var-dumper": "^5.1",
-        "phpunit/phpunit": "^8.4"
     },
     "autoload": {
         "psr-4": {
